@@ -11,7 +11,7 @@ namespace StartupJointVenture.Models
 
         public string AuthorId { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        public virtual User Author { get; set; }
 
         public int IdeaId { get; set; }
 
