@@ -9,7 +9,8 @@ namespace StartupJointVenture.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(StartupJointVenture.Data.ApplicationDbContext context)
