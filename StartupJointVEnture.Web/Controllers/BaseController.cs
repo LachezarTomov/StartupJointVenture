@@ -10,7 +10,7 @@ namespace StartupJointVEnture.Web.Controllers
     using StartupJointVenture.Data;
     using StartupJointVenture.Models;
 
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected IJointVentureData Data { get; set; }
 
@@ -19,8 +19,8 @@ namespace StartupJointVEnture.Web.Controllers
         public BaseController(IJointVentureData data)
         {
             this.Data = data;
-            var userId = this.User.Identity.GetUserId();
-            this.LoggedUser = this.Data.Users.Find(userId);
+            //var userId = this.User.Identity.GetUserId();
+            //this.LoggedUser = this.Data.Users.Find(userId);
         }
 
         public ActionResult Index()

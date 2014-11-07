@@ -1,0 +1,9 @@
+﻿@model IEnumerable<StartupJointVenture.Models.Category>
+
+<p class="lead">Categories</p>
+<div class="list-group">
+    @foreach (var category in Model)
+    {
+        @Html.ActionLink(category.Name, "Search", null, new { @class = "list-group-item" })
+    }
+</div>

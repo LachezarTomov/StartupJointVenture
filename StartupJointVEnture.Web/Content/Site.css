@@ -1,10 +1,25 @@
-﻿body {
+﻿/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+    .body-content {
+        padding: 0;
+    }
+}
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
-/* Set padding to keep content from hitting the edges */
+.fix{
+    margin-top: -45px;
+}
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
 .body-content {
+    margin-top: 25px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -16,9 +31,84 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
     max-width: 280px;
 }
+
+.image-tile {
+    position: relative;
+}
+
+.image-tile > div {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    display: none;
+    margin:0;
+    padding:0;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.image-tile > input {
+    width: 100%;
+    height: 100%;
+}
+
+.image-tile:hover > div {
+    display: inline;
+}
+
+
+.image-tile:hover > input {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.image-wrapper{
+    width: 150px;
+    height: 150px;
+    vertical-align:middle;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.image-wrapper>img{
+    max-height: 100%;
+    max-width:100%;
+}
+
+.btn {
+    margin: 5px 0;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+
+

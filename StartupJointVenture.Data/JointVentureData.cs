@@ -13,14 +13,14 @@
         private DbContext context;
         private Dictionary<Type, object> repositories;
 
-        public JointVentureData(ApplicationDbContext context)
+        public JointVentureData(JointVentureDbContext context)
         {
             this.context = context;
             this.repositories = new Dictionary<Type, object>();
         }
 
         public IRepository<Idea> Ideas
-        {
+        { 
             get { return this.GetRepository<Idea>(); }
         }
         public IRepository<Category> Categories
@@ -35,6 +35,11 @@
         public IRepository<Comment> Comments
         {
             get { return this.GetRepository<Comment>(); }
+        }
+
+        public IRepository<User> Users
+        {
+            get { return this.GetRepository<User>(); }
         }
 
         private IRepository<T> GetRepository<T>() where T : class
