@@ -4,18 +4,19 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-    
+
+    using Microsoft.AspNet.Identity;
+
     using StartupJointVenture.Data;
     using StartupJointVenture.Web.ViewModels;
     using System.Collections.Generic;
+    using StartupJointVenture.Models;
     
     public class IdeasController : BaseController
     {
         [HttpGet]
         public ActionResult NewIdea()
         {
-            //ViewBag.Categories = this.Data.Categories.All().ToList().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
-
             return View();
         }
 
@@ -25,7 +26,20 @@
         {
             if (ModelState.IsValid)
             {
+                var newIdea = new Idea()
+                {
+                    Title = model.Title,
+                    Content = model.Content,
+                    CategoryId = int.Parse(model.Category),
+                    AuthorId = User.Identity.GetUserId(),
+                    DateCreated = DateTime.Now
+                };
 
+                this.Data.Ideas.Add(newIdea);
+                this.Data.SaveChanges();
+
+                //return RedirectToAction("NewIdea");
+                return RedirectToAction("../");
             }
 
             return View();

@@ -1,9 +1,12 @@
 ﻿namespace StartupJointVenture.Web.ViewModels
 {
-    using StartupJointVenture.Models;
     using System.ComponentModel.DataAnnotations;
 
-    public class IdeaViewModel
+    using StartupJointVenture.Models;
+    using StartupJointVenture.Web.Infrastructure.Mapping;
+
+
+    public class IdeaViewModel : IMapFrom<Idea>
     {
         [Required]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Title field must be between {1} and {2} symbols")]
@@ -15,9 +18,8 @@
         public string Content { get; set; }
 
         [Display(Name = "Category")]
-        public int CategoryId { get; set; }
-
-        public virtual Category Category { get; set; }
+        
+        public string Category { get; set; }
 
     }
 }
