@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(StartupJointVEnture.Web.Startup))]
-namespace StartupJointVEnture.Web
+[assembly: OwinStartupAttribute(typeof(StartupJointVenture.Web.Startup))]
+namespace StartupJointVenture.Web
 {
     public partial class Startup
     {

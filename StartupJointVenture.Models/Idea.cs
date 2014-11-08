@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -18,8 +19,12 @@ namespace StartupJointVenture.Models
 
         public int Id { get; set; }
 
+        [MaxLength(100)]
+        [Required]
         public string Title { get; set; }
 
+        [MaxLength(1200)]
+     //   [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
         public DateTime DateCreated { get; set; }
@@ -28,7 +33,7 @@ namespace StartupJointVenture.Models
 
         public virtual User Author { get; set; }
 
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 

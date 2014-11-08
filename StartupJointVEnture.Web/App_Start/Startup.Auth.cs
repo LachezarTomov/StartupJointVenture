@@ -1,6 +1,6 @@
 ﻿
 
-namespace StartupJointVEnture.Web
+namespace StartupJointVenture.Web
 {
     using System;
     using Microsoft.AspNet.Identity;
@@ -10,7 +10,7 @@ namespace StartupJointVEnture.Web
     using Microsoft.Owin.Security.Google;
     using Owin;
 
-    using StartupJointVEnture.Web.Models;
+    using StartupJointVenture.Web.Models;
     using StartupJointVenture.Data;
     using StartupJointVenture.Models;
 

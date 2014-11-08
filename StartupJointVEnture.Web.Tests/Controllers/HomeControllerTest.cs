@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StartupJointVEnture.Web;
-using StartupJointVEnture.Web.Controllers;
+using StartupJointVenture.Web;
+using StartupJointVenture.Web.Controllers;
 
-namespace StartupJointVEnture.Web.Tests.Controllers
+namespace StartupJointVenture.Web.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

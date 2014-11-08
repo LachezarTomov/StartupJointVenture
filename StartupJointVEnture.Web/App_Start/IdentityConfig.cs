@@ -1,4 +1,4 @@
-﻿namespace StartupJointVEnture.Web
+﻿namespace StartupJointVenture.Web
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,7 @@
     using Microsoft.Owin;
     using Microsoft.Owin.Security;
 
-    using StartupJointVEnture.Web.Models;
+    using StartupJointVenture.Web.Models;
     using StartupJointVenture.Models;
     using StartupJointVenture.Data;
 

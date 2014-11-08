@@ -1,6 +1,4 @@
-﻿
-
-namespace StartupJointVEnture.Web.Controllers
+﻿namespace StartupJointVenture.Web.Controllers
 {
     using System;
     using System.Web.Mvc;
@@ -16,11 +14,19 @@ namespace StartupJointVEnture.Web.Controllers
 
         public User LoggedUser { get; set; }
 
+        public BaseController()
+            : this(new JointVentureData())
+        {
+        }
+
         public BaseController(IJointVentureData data)
         {
             this.Data = data;
-            //var userId = this.User.Identity.GetUserId();
-            //this.LoggedUser = this.Data.Users.Find(userId);
+         //   if (this.User)
+            //{
+            //    var userId = this.User.Identity.GetUserId();
+            //    this.LoggedUser = this.Data.Users.Find(userId);
+            //}
         }
 
         public ActionResult Index()

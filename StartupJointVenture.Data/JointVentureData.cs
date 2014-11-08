@@ -19,6 +19,11 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
+        public JointVentureData()
+            : this(new JointVentureDbContext())
+        {
+        }
+
         public IRepository<Idea> Ideas
         { 
             get { return this.GetRepository<Idea>(); }

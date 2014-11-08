@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace StartupJointVEnture.Web
+namespace StartupJointVenture.Web
 {
     public class BundleConfig
     {
@@ -24,7 +24,7 @@ namespace StartupJointVEnture.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.spacelab.css",
                       "~/Content/site.css",
                       "~/Content/idea.css"));
 

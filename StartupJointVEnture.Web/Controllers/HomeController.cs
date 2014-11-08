@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace StartupJointVEnture.Web.Controllers
+namespace StartupJointVenture.Web.Controllers
 {
     public class HomeController : Controller
     {

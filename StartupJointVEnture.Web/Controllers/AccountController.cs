@@ -1,4 +1,4 @@
-﻿namespace StartupJointVEnture.Web.Controllers
+﻿namespace StartupJointVenture.Web.Controllers
 {
     using System;
     using System.Globalization;
@@ -11,7 +11,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    using StartupJointVEnture.Web.Models;
+    using StartupJointVenture.Web.Models;
     using StartupJointVenture.Models;
 
     [Authorize]

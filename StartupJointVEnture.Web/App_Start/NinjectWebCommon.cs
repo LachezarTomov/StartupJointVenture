@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(StartupJointVEnture.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(StartupJointVEnture.Web.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(StartupJointVenture.Web.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(StartupJointVenture.Web.App_Start.NinjectWebCommon), "Stop")]
 
-namespace StartupJointVEnture.Web.App_Start
+namespace StartupJointVenture.Web.App_Start
 {
     using System;
     using System.Web;
