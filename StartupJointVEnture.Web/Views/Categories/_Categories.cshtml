@@ -1,9 +1,9 @@
-﻿@model IEnumerable<StartupJointVenture.Models.Category>
+﻿@model IEnumerable<StartupJointVenture.Web.ViewModels.CategoryViewModel>
 
 <p class="lead">Categories</p>
 <div class="list-group">
     @foreach (var category in Model)
     {
-        @Html.ActionLink(category.Name, "Search", null, new { @class = "list-group-item" })
+        @Html.ActionLink(category.Name, "../Search/Index", new { categoryId = category.Id }, new { @class = "list-group-item" })
     }
 </div>

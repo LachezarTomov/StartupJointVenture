@@ -6,7 +6,7 @@
     using StartupJointVenture.Web.Infrastructure.Mapping;
 
 
-    public class IdeaViewModel : IMapFrom<Idea>
+    public class CreateIdeaViewModel : IMapFrom<Idea>
     {
         [Required]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Title field must be between {1} and {2} symbols")]

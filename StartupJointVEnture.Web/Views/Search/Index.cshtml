@@ -1,0 +1,18 @@
+﻿@model int
+@{
+    ViewBag.Title = "Search Ideas";
+}
+
+<h2>Search Ideas</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Action("GetAll", "Categories")
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                    @Html.Action("GetIdeasByCategory", "Ideas", new { categoryId = Model })
+            </div>
+        </div>
+    </div>
+</div>

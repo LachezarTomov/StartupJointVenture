@@ -6,6 +6,7 @@
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
+    using AutoMapper.QueryableExtensions;
 
     using StartupJointVenture.Data;
     using StartupJointVenture.Web.ViewModels;
@@ -22,7 +23,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NewIdea(IdeaViewModel model)
+        public ActionResult NewIdea(CreateIdeaViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -48,7 +49,15 @@
         [HttpGet]
         public ActionResult GetIdeasHomePage()
         {
-            var ideas = this.Data.Ideas.All().ToList();
+            var ideas = this.Data.Ideas.All().Project().To<IdeaSampleViewModel>();
+
+            return PartialView("_IdeaNoteView", ideas);
+        }
+
+        [HttpGet]
+        public ActionResult GetIdeasByCategory(int categoryId)
+        {
+           var ideas = this.Data.Ideas.All().Where(i => i.CategoryId == categoryId).Project().To<IdeaSampleViewModel>().ToList();
 
             return PartialView("_IdeaNoteView", ideas);
         }
