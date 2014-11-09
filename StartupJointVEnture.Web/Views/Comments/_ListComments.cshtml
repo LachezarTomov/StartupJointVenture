@@ -1,0 +1,12 @@
+﻿@model IEnumerable<StartupJointVenture.Web.ViewModels.CommentViewModel>
+
+@foreach (var item in Model) {
+    <div class="row well">
+        by <strong>@item.Author.UserName</strong>
+         - <em class="pull-right">@item.DateCreated</em>
+        <div class="row panel-body">
+            @item.Content
+        </div>
+    </div>
+}
+

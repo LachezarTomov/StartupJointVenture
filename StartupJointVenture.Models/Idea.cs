@@ -10,6 +10,7 @@ namespace StartupJointVenture.Models
     {
         private ICollection<Like> likes;
         private ICollection<Comment> comments;
+        private ICollection<User> cofounders;
 
         public Idea()
         {
@@ -37,7 +38,6 @@ namespace StartupJointVenture.Models
 
         public virtual Category Category { get; set; }
 
-        
         public virtual ICollection<Like> Likes
         {
             get { return this.likes; }
@@ -48,6 +48,12 @@ namespace StartupJointVenture.Models
         {
             get { return this.comments; }
             set { this.comments = value; }
+        }
+
+        public virtual ICollection<User> Cofounders
+        {
+            get { return this.cofounders; }
+            set { this.cofounders = value; }
         }
     }
 }

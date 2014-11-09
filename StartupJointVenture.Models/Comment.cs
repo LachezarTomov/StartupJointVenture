@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace StartupJointVenture.Models
+﻿namespace StartupJointVenture.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
+
     public class Comment
     {
         public int Id { get; set; }
 
+        [MaxLength(500)]
+        [Required]
         public string Content { get; set; }
 
         public DateTime DateCreated { get; set; }

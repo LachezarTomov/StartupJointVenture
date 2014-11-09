@@ -6,7 +6,7 @@
         <div class="quote-container">
             <span class="pin"></span>
             <blockquote class="note yellow-note">
-                @Html.ActionLink(idea.Title,"/Idea/Details/"+idea.Id)
+                @Html.ActionLink(idea.Title, "../IdeaDetails/Index", new { ideaId = idea.Id })
             </blockquote>
         </div>
 </div>

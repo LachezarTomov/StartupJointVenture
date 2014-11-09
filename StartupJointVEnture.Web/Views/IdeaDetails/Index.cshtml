@@ -1,0 +1,72 @@
+﻿@model StartupJointVenture.Web.ViewModels.IdeaDetailsViewModel
+<h2>Idea detail view</h2>
+<div class="container">
+    <div class="row">
+        A startup idea shared by
+        <strong> @Html.DisplayTextFor(i => i.Author.UserName) </strong> on
+        <strong>@Html.DisplayTextFor(i => i.DateCreated)</strong>
+    </div>
+    <div class="row">
+        <div class="ccol-sm-9 col-lg-9 col-md-9">
+            <div class="quote-container">
+                <span class="pin"></span>
+                <blockquote class="yellow-note panel">
+                    <div class="panel-body">
+                        <div class="row panel-title">
+                            <h3>
+                                @Html.DisplayTextFor(i => i.Title)
+                            </h3>
+                        </div>
+                        <div class="row">
+                            @Html.DisplayTextFor(i => i.Content)
+                        </div>
+                    </div>
+                </blockquote>
+            </div>
+
+            <div class="ccol-sm-6 col-lg-6 col-md-6">
+                <div class="row">
+                    <h3><img src="~/Content/images/comments.png" /> Comments</h3>
+                </div>
+                <div class="row">
+                    @if (Model.Comments.Count() == 0)
+                    {
+                        <p>No comments</p>
+                    }
+                    else
+                    {
+                        <div id="allComments">
+                            @Html.Action("GetAllComments", "Comments", new { ideaId = @Model.Id })
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    @using (Ajax.BeginForm("AddComment", "Comments", null, new AjaxOptions
+                    {
+                        UpdateTargetId = "allComments",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "POST"
+                    }, new { id = "addCommentForm", @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div>
+                            <div class="row">
+                                <input type="text" name="comment" class="form-control" />
+                                <input type="hidden" name="ideaId" value="@Model.Id" />
+                            </div>
+                            <br />
+                            <div class="row">
+                                <input type="submit" value="Send" class="btn-success" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
