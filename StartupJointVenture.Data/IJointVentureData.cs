@@ -13,6 +13,8 @@
 
         IRepository<Comment> Comments { get; }
 
+        IRepository<Cofounder> Cofounders { get; }
+
         IRepository<User> Users { get; }
 
         int SaveChanges();

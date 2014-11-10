@@ -42,6 +42,11 @@
             get { return this.GetRepository<Comment>(); }
         }
 
+        public IRepository<Cofounder> Cofounders
+        {
+            get { return this.GetRepository<Cofounder>(); }
+        }
+
         public IRepository<User> Users
         {
             get { return this.GetRepository<User>(); }

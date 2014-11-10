@@ -23,5 +23,7 @@
         public IEnumerable<Comment> Comments { get; set; }
 
         public IEnumerable<Like> Likes { get; set; }
+
+        public IEnumerable<User> Cofouders { get; set; }
     }
 }

@@ -11,12 +11,13 @@
     public class User : IdentityUser
     {
         private ICollection<Idea> ideas;
+        private ICollection<Cofounder> cofounders;
         private ICollection<Comment> comments;
-
 
         public User()
         {
             this.ideas = new HashSet<Idea>();
+            this.cofounders = new HashSet<Cofounder>();
             this.comments = new HashSet<Comment>();
         }
 
@@ -28,6 +29,18 @@
             return userIdentity;
         }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Avatar { get; set; }
+
+        public string Description { get; set; }
+
+        //public string City { get; set; }
+
+        //public string ProfSkills { get; set; }
+
         public virtual ICollection<Idea> Ideas
         {
             get { return this.ideas; }
@@ -38,6 +51,12 @@
         {
             get { return this.comments; }
             set { this.comments = value; }
+        }
+
+        public virtual ICollection<Cofounder> Cofounders
+        {
+            get { return this.cofounders; }
+            set { this.cofounders = value; }
         }
     }
 }

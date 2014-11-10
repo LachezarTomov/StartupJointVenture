@@ -24,5 +24,20 @@
         public IDbSet<Like> Likes { get; set; }
         public IDbSet<Comment> Comments { get; set; }
         public IDbSet<Category> Categories { get; set; }
+        public IDbSet<Cofounder> Cofounders { get; set; }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Idea>().
+        //        HasMany(c => c.Cofounders).
+        //        WithMany(p => p.Cofounders).
+        //        Map(
+        //        m =>
+        //        {
+        //            m.MapLeftKey("Id");
+        //            m.MapRightKey("Id");
+        //            m.ToTable("IdeasUsers");
+        //        });
+        //}
     }
 }

@@ -8,7 +8,6 @@ namespace StartupJointVenture.Data.Migrations
 
     using StartupJointVenture.Models;
 
-
     public sealed class Configuration : DbMigrationsConfiguration<JointVentureDbContext>
     {
         public Configuration()
@@ -21,12 +20,6 @@ namespace StartupJointVenture.Data.Migrations
         {
             if (!context.Categories.Any())
             {
-                //IList<Category> categories = new List<Category>();
-                //categories.Add(new Category() { Name = "Online ideas" });
-                //categories.Add(new Category() { Name = "Mobile ideas" });
-                //categories.Add(new Category() { Name = "Service ideas" });
-                //categories.Add(new Category() { Name = "Social business ideas" });
-
                 IList<Category> categories = new List<Category>();
                 categories.Add(new Category() { Name = "Online ideas" });
                 categories.Add(new Category() { Name = "Mobile ideas" });
@@ -37,6 +30,9 @@ namespace StartupJointVenture.Data.Migrations
                 context.Categories.AddOrUpdate(categories.ToArray());
 
                 User user = new User() { UserName = "Anonimous" };
+                //context.Users.AddOrUpdate(user);
+                //var userId = context.Users.FirstOrDefault().Id; 
+
 
                 IList<Idea> ideas = new List<Idea>();
 
@@ -45,6 +41,7 @@ namespace StartupJointVenture.Data.Migrations
                     Category = categories[2],
                     DateCreated = DateTime.Now,
                     Author = user,
+                    
                     Title = "International public transportation search service",
                     Content = "It will be nice to have some worldwide site with searching in databases of local transportation services. For example I want to travel from London to Birmingham and doesn't matter with what type of vehicle and providing company. It's pretty difficult to search such things when you are foreigner and don't know anything about local transportation companies. The example is from Britain but it should be available to search for every country and even cross-country. Some sorts of results like \"most economy transport\" or \"fastest transport\" would be also nice."
                 });
@@ -53,6 +50,7 @@ namespace StartupJointVenture.Data.Migrations
                     Category = categories[2],
                     DateCreated = DateTime.Now,
                     Author = user,
+                    
                     Title = "Time barter",
                     Content = "Everyone is good at something. How about a website that would allow time barter - I will program 2 hours anything for somebody if he/she helps me for 2 hours with painting my flat. Everyone then can do what he loves and everything gets done."
                 });

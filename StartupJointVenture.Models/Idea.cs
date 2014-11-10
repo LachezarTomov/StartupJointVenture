@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-
-namespace StartupJointVenture.Models
+﻿namespace StartupJointVenture.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
     public class Idea
     {
         private ICollection<Like> likes;
         private ICollection<Comment> comments;
-        private ICollection<User> cofounders;
+        private ICollection<Cofounder> cofounders;
 
         public Idea()
         {
             this.likes = new HashSet<Like>();
+            this.cofounders = new HashSet<Cofounder>();
             this.comments = new HashSet<Comment>();
         }
 
@@ -25,7 +26,6 @@ namespace StartupJointVenture.Models
         public string Title { get; set; }
 
         [MaxLength(1200)]
-     //   [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
         public DateTime DateCreated { get; set; }
@@ -50,7 +50,7 @@ namespace StartupJointVenture.Models
             set { this.comments = value; }
         }
 
-        public virtual ICollection<User> Cofounders
+        public virtual ICollection<Cofounder> Cofounders
         {
             get { return this.cofounders; }
             set { this.cofounders = value; }
