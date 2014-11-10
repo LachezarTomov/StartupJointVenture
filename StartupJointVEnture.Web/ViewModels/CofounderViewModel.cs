@@ -6,15 +6,11 @@
     using StartupJointVenture.Models;
     using StartupJointVenture.Web.Infrastructure.Mapping;
 
-    public class CofounderViewModel : IMapFrom<User>
+    public class CofounderViewModel : IMapFrom<Cofounder>
     {
-        public string FirstName { get; set; }
+        public User User { get; set; }
 
-        public string LastName { get; set; }
-
-        public string Avatar { get; set; }
-
-        public string City { get; set; }
+        public string Location { get; set; }
 
         public string ProfSkills { get; set; }
     }

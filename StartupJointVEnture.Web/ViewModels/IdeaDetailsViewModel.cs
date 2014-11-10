@@ -24,6 +24,6 @@
 
         public IEnumerable<Like> Likes { get; set; }
 
-        public IEnumerable<User> Cofouders { get; set; }
+        public IEnumerable<Cofounder> Cofounders { get; set; }
     }
 }

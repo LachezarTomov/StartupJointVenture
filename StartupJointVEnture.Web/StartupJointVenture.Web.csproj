@@ -298,11 +298,11 @@
     <Content Include="Views\Search\_IdeaNoteView.cshtml" />
     <Content Include="Views\IdeaDetails\Index.cshtml" />
     <Content Include="Views\Comments\_ListComments.cshtml" />
+    <Content Include="Views\Cofounders\_ListCofounders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Cofounders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

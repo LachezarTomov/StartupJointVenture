@@ -48,9 +48,7 @@
             }
 
             var result = this.Data.Comments.All().Where(i => i.IdeaId == ideaId).Project().To<CommentViewModel>();
-
-            //ModelState.Clear();
-
+            
             return this.PartialView("_ListComments", result);
         }
     }

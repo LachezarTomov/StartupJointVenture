@@ -22,11 +22,6 @@
         public BaseController(IJointVentureData data)
         {
             this.Data = data;
-         //   if (this.User)
-            //{
-            //    var userId = this.User.Identity.GetUserId();
-            //    this.LoggedUser = this.Data.Users.Find(userId);
-            //}
         }
 
         public ActionResult Index()

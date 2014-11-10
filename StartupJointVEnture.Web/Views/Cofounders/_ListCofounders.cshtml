@@ -1,0 +1,13 @@
+﻿@model IEnumerable<StartupJointVenture.Web.ViewModels.CofounderViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="row panel">
+        <img src="~/Content/images/nopicture.png" />
+        <strong>
+            @item.User.FirstName
+            @item.User.LastName
+        </strong>
+        <em>@item.ProfSkills (@item.Location)</em>
+    </div>
+}

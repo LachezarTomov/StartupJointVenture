@@ -1,4 +1,12 @@
 ﻿@model StartupJointVenture.Web.ViewModels.IdeaDetailsViewModel
+@section Styles {
+    <style>
+        img {
+            height: 45px;
+            width: 45px;
+        }
+    </style>
+}
 <h2>Idea detail view</h2>
 <div class="container form-horizontal">
     <div class="row">
@@ -76,20 +84,20 @@
                 </div>
                 <div class="row">
                     <div id="allCofounders">
-                        @if (Model.Cofouders.Count() == 0)
+                        @if (Model.Cofounders.Count() == 0)
                         {
-                            <p>No comments</p>
+                            <p>No cofounders</p>
                         }
                         else
                         {
-                            @Html.Action("GetAllCofounders", "Cofounder", new { ideaId = @Model.Id })
+                            @Html.Action("GetAllCofounders", "Cofounders",  new { ideaId = @Model.Id })
                         }
                     </div>
                 </div>
-                @if (Context.User.Identity.IsAuthenticated)
+                @if (Context.User.Identity.IsAuthenticated && Model.Author.UserName != Context.User.Identity.Name)
                 {
                     <div class="row">
-                        @using (Ajax.BeginForm("AddCofounder", "CommeCofoundernts", null, new AjaxOptions
+                        @using (Ajax.BeginForm("AddCofounder", "Cofounders", null, new AjaxOptions
                     {
                         UpdateTargetId = "allCofounders",
                         InsertionMode = InsertionMode.Replace,
@@ -99,12 +107,18 @@
                             @Html.AntiForgeryToken()
                             <div>
                                 <div class="row">
-                                    <input type="hidden" name="userId" value="@Model.Author.Id" />
+                                    <label for="location">Location</label>
+                                    <input type="text" name="location" id="location" class="form-control" />
+                                    
+                                    <label for="profskills">Professional skills</label>
+                                    <input type="text" name="profskills" id="profskills" class="form-control" />
+                                    
                                     <input type="hidden" name="ideaId" value="@Model.Id" />
+
                                 </div>
                                 <br />
                                 <div class="row">
-                                    <input type="submit" value="Send" class="btn-primary btn-lg" />
+                                    <input type="submit" value="Join" class="btn-primary btn-lg" />
                                 </div>
                             </div>
                         }
