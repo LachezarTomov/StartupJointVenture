@@ -14,7 +14,7 @@
     </div>
 }
 
-@if (Request.Path != "/")
+@if (Request.Path != "/" && Request.Path != "/Home/Index")
 {
     <div id="pager" class="row">
         @Html.PagedListPager(Model, page => Url.Action(

@@ -7,130 +7,173 @@
         }
     </style>
 }
-<h2>Idea detail view</h2>
-<div class="container form-horizontal">
-    <div class="row">
-        A startup idea shared by
-        <strong> @Html.DisplayTextFor(i => i.Author.UserName) </strong> on
-        <strong>@Html.DisplayTextFor(i => i.DateCreated)</strong>
-    </div>
-    <div class="row">
-        <div class="col-sm-9 col-lg-9 col-md-9">
-            <div class="quote-container">
-                <span class="pin"></span>
-                <blockquote class="yellow-note panel">
-                    <div class="panel-body">
-                        <div class="row panel-title">
-                            <h3>
-                                @Html.DisplayTextFor(i => i.Title)
-                            </h3>
-                        </div>
-                        <div class="row">
-                            @Html.DisplayTextFor(i => i.Content)
-                        </div>
-                    </div>
-                </blockquote>
-            </div>
 
-            <div class="col-sm-6 col-lg-6 col-md-6">
-                <div class="row">
-                    <h3><img src="~/Content/images/comments.png" /> Comments</h3>
+@{
+    var showLikeItButton = true;
+    var likes = Model.Likes;
+    foreach (var like in likes)
+    {
+        if(like.IdeaId == Model.Id && like.AuthorId == Model.Author.Id) 
+        {
+            showLikeItButton = false;
+            break;
+        }
+    }
+}
+<div class="row">
+    <h2 class="col-sm-7 col-lg-7 col-md-7">Idea detail view</h2>
+    <div class="col-sm-5 col-lg-5 col-md-5">
+        <h1>
+            <span class="label alert-info">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <span id="likes">@Model.Likes.Count()</span>
+            </span>
+            @if(showLikeItButton)
+            {
+            @Ajax.ActionLink("I Like It", "LikeIdea", "Likes",
+                new { ideaId = Model.Id, likesCount = @Model.Likes.Count() },
+                new AjaxOptions() { 
+                    UpdateTargetId = "likes", 
+                    InsertionMode = InsertionMode.Replace, 
+                    OnSuccess="HideLikeItButton"}, 
+                new { @class = "btn btn-info btn-md", id="likeItButton" })
+            }
+                </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container form-horizontal ">
+        <div class="row">
+            <span>A startup idea shared by</span>
+            <strong> @Html.DisplayTextFor(i => i.Author.UserName) </strong> on
+            <strong>@Html.DisplayTextFor(i => i.DateCreated)</strong>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-lg-9 col-md-9">
+                <div class="quote-container">
+                    <span class="pin"></span>
+                    <blockquote class="yellow-note panel">
+                        <div class="panel-body">
+                            <div class="row panel-title">
+                                <h3>
+                                    @Html.DisplayTextFor(i => i.Title)
+                                </h3>
+                            </div>
+                            <div class="row">
+                                @Html.DisplayTextFor(i => i.Content)
+                            </div>
+                        </div>
+                    </blockquote>
                 </div>
-                <div class="row">
-                    <div id="allComments">
-                        @if (Model.Comments.Count() == 0)
-                        {
-                            <p>No comments</p>
-                        }
-                        else
-                        {
-                            @Html.Action("GetAllComments", "Comments", new { ideaId = @Model.Id })
-                        }
-                    </div>
-                </div>
-                @if (Context.User.Identity.IsAuthenticated)
-                {
+
+                <div class="col-sm-6 col-lg-6 col-md-6">
                     <div class="row">
-                        @using (Ajax.BeginForm("AddComment", "Comments", null, new AjaxOptions
+                        <h3><img src="~/Content/images/comments.png" /> Comments</h3>
+                    </div>
+                    <div class="row">
+                        <div id="allComments">
+                            @if (Model.Comments.Count() == 0)
+                            {
+                                <p>No comments</p>
+                            }
+                            else
+                            {
+                                @Html.Action("GetAllComments", "Comments", new { ideaId = @Model.Id })
+                            }
+                        </div>
+                    </div>
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        <div class="row">
+                            @using (Ajax.BeginForm("AddComment", "Comments", null, new AjaxOptions
                     {
                         UpdateTargetId = "allComments",
                         InsertionMode = InsertionMode.Replace,
                         HttpMethod = "POST"
                     }, new { id = "addCommentForm", @class = "form-horizontal" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div>
-                                <div class="row">
-                                    <input type="text" name="comment" class="form-control" />
-                                    <input type="hidden" name="ideaId" value="@Model.Id" />
+                            {
+                                @Html.AntiForgeryToken()
+                                <div>
+                                    <div class="row">
+                                        <input type="text" name="comment" class="form-control" />
+                                        <input type="hidden" name="ideaId" value="@Model.Id" />
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <input type="submit" value="Send" class="btn-primary btn-lg" />
+                                    </div>
                                 </div>
-                                <br />
-                                <div class="row">
-                                    <input type="submit" value="Send" class="btn-primary btn-lg" />
-                                </div>
-                            </div>
-                        }
-                    </div>
-                }
-            </div>
-            <div class="col-sm-offset-1 col-sm-5 col-lg-5 col-md-5">
-                <div class="row">
-                    <h3><img src="~/Content/images/cofounders.png" /> Cofounders</h3>
+                            }
+                        </div>
+                    }
                 </div>
-                <div class="row">
-                    <p>
-                        Get in touch with people passionate about realizing this idea. Show others how you can contribute (eg. webdesign, funding, media coverage, launch in your country).
-                    </p>
-                </div>
-                <div class="row">
-                    <div id="allCofounders">
-                        @if (Model.Cofounders.Count() == 0)
-                        {
-                            <p>No cofounders</p>
-                        }
-                        else
-                        {
-                            @Html.Action("GetAllCofounders", "Cofounders",  new { ideaId = @Model.Id })
-                        }
-                    </div>
-                </div>
-                @if (Context.User.Identity.IsAuthenticated && Model.Author.UserName != Context.User.Identity.Name)
-                {
+                <div class="col-sm-offset-1 col-sm-5 col-lg-5 col-md-5">
                     <div class="row">
-                        @using (Ajax.BeginForm("AddCofounder", "Cofounders", null, new AjaxOptions
+                        <h3><img src="~/Content/images/cofounders.png" /> Cofounders</h3>
+                    </div>
+                    <div class="row">
+                        <p>
+                            Get in touch with people passionate about realizing this idea. Show others how you can contribute (eg. webdesign, funding, media coverage, launch in your country).
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div id="allCofounders">
+                            @if (Model.Cofounders.Count() == 0)
+                            {
+                                <p>No cofounders</p>
+                            }
+                            else
+                            {
+                                @Html.Action("GetAllCofounders", "Cofounders", new { ideaId = @Model.Id })
+                            }
+                        </div>
+                    </div>
+                    @if (Context.User.Identity.IsAuthenticated && Model.Author.UserName != Context.User.Identity.Name)
+                    {
+                        <div class="row">
+                            @using (Ajax.BeginForm("AddCofounder", "Cofounders", null, new AjaxOptions
                     {
                         UpdateTargetId = "allCofounders",
                         InsertionMode = InsertionMode.Replace,
                         HttpMethod = "POST"
                     }, new { id = "addCommentForm", @class = "form-horizontal" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div>
-                                <div class="row">
-                                    <label for="location">Location</label>
-                                    <input type="text" name="location" id="location" class="form-control" />
-                                    
-                                    <label for="profskills">Professional skills</label>
-                                    <input type="text" name="profskills" id="profskills" class="form-control" />
-                                    
-                                    <input type="hidden" name="ideaId" value="@Model.Id" />
+                            {
+                                @Html.AntiForgeryToken()
+                                <div>
+                                    <div class="row">
+                                        <label for="location">Location</label>
+                                        <input type="text" name="location" id="location" class="form-control" />
 
+                                        <label for="profskills">Professional skills</label>
+                                        <input type="text" name="profskills" id="profskills" class="form-control" />
+
+                                        <input type="hidden" name="ideaId" value="@Model.Id" />
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <input type="submit" value="Join" class="btn-primary btn-lg" />
+                                    </div>
                                 </div>
-                                <br />
-                                <div class="row">
-                                    <input type="submit" value="Join" class="btn-primary btn-lg" />
-                                </div>
-                            </div>
-                        }
-                    </div>
-                }
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-sm-3 col-lg-3 col-md-3">
+
             </div>
         </div>
-        <div class="col-sm-3 col-lg-3 col-md-3">
-
-        </div>
     </div>
-    @section scripts {
-        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    }
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        function HideLikeItButton()
+        {
+            $("#likeItButton").hide();
+        }
+    </script>
+}
