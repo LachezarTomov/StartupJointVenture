@@ -1,17 +1,19 @@
 ﻿namespace StartupJointVenture.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
     using AutoMapper.QueryableExtensions;
+    using PagedList;
 
     using StartupJointVenture.Data;
     using StartupJointVenture.Web.ViewModels;
-    using System.Collections.Generic;
     using StartupJointVenture.Models;
+
 
     public class IdeasController : BaseController
     {
@@ -50,12 +52,16 @@
         public ActionResult GetIdeasHomePage()
         {
             var ideas = this.Data.Ideas.All().OrderByDescending(i => i.Id).Take(3).Project().To<IdeaSampleViewModel>();
+           
+            PagedList<IdeaSampleViewModel> newModel = new PagedList<IdeaSampleViewModel>(ideas,1,3);
 
-            return PartialView("_IdeaNoteView", ideas);
+            //return PartialView("_IdeaNoteView", ideas);
+            return PartialView("_IdeaNoteView", newModel);
+
         }
 
         [HttpGet]
-        public ActionResult GetIdeasByCategory(int? categoryId)
+        public ActionResult GetIdeasByCategory(int? categoryId, int page = 1, int pageSize = 6)
         {
             IQueryable<Idea> ideas = this.Data.Ideas.All();
             if (categoryId != null)
@@ -63,7 +69,11 @@
                 ideas = ideas.Where(i => i.CategoryId == categoryId);
             }
 
-            return PartialView("_IdeaNoteView", ideas.Project().To<IdeaSampleViewModel>().ToList());
+            IEnumerable<IdeaSampleViewModel> model = ideas.Project().To<IdeaSampleViewModel>().ToList();
+
+            PagedList<IdeaSampleViewModel> newModel = new PagedList<IdeaSampleViewModel>(model, page, pageSize);
+
+            return PartialView("_IdeaNoteView", newModel);
         }
     }
 }

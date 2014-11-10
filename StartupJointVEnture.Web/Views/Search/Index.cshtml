@@ -3,6 +3,10 @@
     ViewBag.Title = "Search Ideas";
 }
 
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
 <h2>Search Ideas</h2>
 <div class="container">
     <div class="row">
@@ -15,7 +19,7 @@
             @Html.Action("GetAll", "Categories")
         </div>
         <div class="col-md-9">
-            <div class="row">
+            <div id="searchResult" class="row">
                 @if (Model == null)
                 {
                     @Html.Action("GetIdeasByCategory", "Ideas")
@@ -25,6 +29,12 @@
                     @Html.Action("GetIdeasByCategory", "Ideas", new { categoryId = Model })
                 }
             </div>
+            
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

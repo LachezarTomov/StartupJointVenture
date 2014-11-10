@@ -1,4 +1,6 @@
-﻿@model IEnumerable<StartupJointVenture.Web.ViewModels.IdeaSampleViewModel>
+﻿@*@model IEnumerable<StartupJointVenture.Web.ViewModels.IdeaSampleViewModel>*@
+@model PagedList.IPagedList<StartupJointVenture.Web.ViewModels.IdeaSampleViewModel>
+@using PagedList.Mvc;
 
 @foreach (var idea in Model)
 {
@@ -9,5 +11,20 @@
                 @Html.ActionLink(idea.Title, "../IdeaDetails/Index", new { ideaId = idea.Id })
             </blockquote>
         </div>
-</div>
+    </div>
+}
+
+@if (Request.Path != "/")
+{
+    <div id="pager" class="row">
+        @Html.PagedListPager(Model, page => Url.Action(
+                "GetIdeasByCategory", "Ideas", new { page, pageSize = Model.PageSize }),
+                  PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.PageNumbersOnly,
+                     new AjaxOptions
+                     {
+                         InsertionMode = InsertionMode.Replace,
+                         HttpMethod = "Get",
+                         UpdateTargetId = "searchResult"
+                     }))
+    </div>
 }
