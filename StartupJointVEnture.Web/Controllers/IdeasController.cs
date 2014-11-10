@@ -12,7 +12,7 @@
     using StartupJointVenture.Web.ViewModels;
     using System.Collections.Generic;
     using StartupJointVenture.Models;
-    
+
     public class IdeasController : BaseController
     {
         [HttpGet]
@@ -49,17 +49,21 @@
         [HttpGet]
         public ActionResult GetIdeasHomePage()
         {
-            var ideas = this.Data.Ideas.All().Project().To<IdeaSampleViewModel>();
+            var ideas = this.Data.Ideas.All().OrderByDescending(i => i.Id).Take(3).Project().To<IdeaSampleViewModel>();
 
             return PartialView("_IdeaNoteView", ideas);
         }
 
         [HttpGet]
-        public ActionResult GetIdeasByCategory(int categoryId)
+        public ActionResult GetIdeasByCategory(int? categoryId)
         {
-           var ideas = this.Data.Ideas.All().Where(i => i.CategoryId == categoryId).Project().To<IdeaSampleViewModel>().ToList();
+            IQueryable<Idea> ideas = this.Data.Ideas.All();
+            if (categoryId != null)
+            {
+                ideas = ideas.Where(i => i.CategoryId == categoryId);
+            }
 
-            return PartialView("_IdeaNoteView", ideas);
+            return PartialView("_IdeaNoteView", ideas.Project().To<IdeaSampleViewModel>().ToList());
         }
     }
 }

@@ -40,7 +40,16 @@
             </div>
 
             <div class="row">
+                <div class="row">
+                    <strong>Newest ideas</strong>
+                </div>
                 @Html.Action("GetIdeasHomePage", "Ideas")
+            </div>
+            <br />
+            <div class="row pull-right">
+                <p>
+                    @Html.ActionLink("See more ...", "../Search/Index")
+                </p>
             </div>
         </div>
         <div class="col-md-3">

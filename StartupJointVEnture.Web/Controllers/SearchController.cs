@@ -12,11 +12,8 @@
     public class SearchController : BaseController
     {
         [HttpGet]
-        public ActionResult Index(int categoryId)
+        public ActionResult Index(int? categoryId)
         {
-            
-
-            //return PartialView("_IdeaNoteView", ideas);
             return View(categoryId);
         }
 
