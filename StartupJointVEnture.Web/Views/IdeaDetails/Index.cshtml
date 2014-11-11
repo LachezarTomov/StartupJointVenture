@@ -13,7 +13,8 @@
     var likes = Model.Likes;
     foreach (var like in likes)
     {
-        if(like.IdeaId == Model.Id && like.AuthorId == Model.Author.Id) 
+        if ((like.IdeaId == Model.Id && like.AuthorId == Model.Author.Id) || 
+            (like.IdeaId == Model.Id && like.Author.UserName == HttpContext.Current.User.Identity.Name))
         {
             showLikeItButton = false;
             break;

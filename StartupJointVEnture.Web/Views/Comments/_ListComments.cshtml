@@ -2,8 +2,15 @@
 
 @foreach (var item in Model) {
     <div class="row well">
-        <img src="~/Content/images/nopicture.png" />
-        by <strong>@item.Author.UserName</strong>
+        @if (item.Author.ImageUrl == null)
+        {
+            <img src="~/Content/images/nopicture.png" />
+        }
+        else
+        {
+            <img src="@item.Author.ImageUrl" />
+        }
+        by <strong>@item.Author.FirstName @item.Author.LastName</strong>
         <em class="pull-right">@item.DateCreated</em>
         <div class="row panel-body">
             @item.Content
