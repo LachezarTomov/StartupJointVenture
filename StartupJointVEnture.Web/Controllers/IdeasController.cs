@@ -55,9 +55,7 @@
            
             PagedList<IdeaSampleViewModel> newModel = new PagedList<IdeaSampleViewModel>(ideas,1,3);
 
-            //return PartialView("_IdeaNoteView", ideas);
             return PartialView("_IdeaNoteView", newModel);
-
         }
 
         [HttpGet]

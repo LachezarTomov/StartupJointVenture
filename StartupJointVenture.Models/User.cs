@@ -3,10 +3,12 @@
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Collections.Generic;
+    
 
     public class User : IdentityUser
     {
@@ -29,17 +31,17 @@
             return userIdentity;
         }
 
+        [MaxLength(30)]
         public string FirstName { get; set; }
 
+        [MaxLength(30)]
         public string LastName { get; set; }
 
-        public string Avatar { get; set; }
+        //[DataType(DataType.ImageUrl)]
+        public string ImageUrl { get; set; }
 
+        [MaxLength(3000)]
         public string Description { get; set; }
-
-        //public string City { get; set; }
-
-        //public string ProfSkills { get; set; }
 
         public virtual ICollection<Idea> Ideas
         {

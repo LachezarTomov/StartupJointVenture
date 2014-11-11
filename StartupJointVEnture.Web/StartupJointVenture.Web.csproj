@@ -209,6 +209,7 @@
     <Compile Include="Controllers\IdeasController.cs" />
     <Compile Include="Controllers\LikesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +228,7 @@
     <Compile Include="ViewModels\CreateIdeaViewModel.cs" />
     <Compile Include="ViewModels\IdeaDetailsViewModel.cs" />
     <Compile Include="ViewModels\IdeaSampleViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -1131,6 +1133,7 @@
     <Content Include="Scripts\Kendo\kendo.view.min.js.map" />
     <Content Include="Scripts\Kendo\kendo.web.min.js.map" />
     <Content Include="Scripts\Kendo\kendo.window.min.js.map" />
+    <Content Include="Views\Profile\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
