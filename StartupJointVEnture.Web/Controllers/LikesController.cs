@@ -1,6 +1,4 @@
-﻿
-
-namespace StartupJointVenture.Web.Controllers
+﻿namespace StartupJointVenture.Web.Controllers
 {
     using System;
     using System.Linq;

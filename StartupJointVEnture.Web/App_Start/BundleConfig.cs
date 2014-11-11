@@ -8,8 +8,14 @@ namespace StartupJointVenture.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+         //   bundles.IgnoreList.Clear();
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/Kendo/jquery.min.js"));
+                //.Include("~/Scripts/jquery-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include("~/Scripts/Kendo/kendo.all.min.js",
+                "~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -27,6 +33,10 @@ namespace StartupJointVenture.Web
                       "~/Content/bootstrap.spacelab.css",
                       "~/Content/site.css",
                       "~/Content/idea.css"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
+            "~/Content/Kendo/kendo.common-bootstrap.min.css",
+            "~/Content/Kendo/kendo.bootstrap.min.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
