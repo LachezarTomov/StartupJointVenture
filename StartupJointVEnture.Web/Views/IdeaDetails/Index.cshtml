@@ -143,10 +143,10 @@
                                 @Html.AntiForgeryToken()
                                 <div>
                                     <div class="row">
-                                        <label for="location">Location</label>
+                                        <label for="location">My location</label>
                                         <input type="text" name="location" id="location" class="form-control" />
 
-                                        <label for="profskills">Professional skills</label>
+                                        <label for="profskills">My role</label>
                                         <input type="text" name="profskills" id="profskills" class="form-control" />
 
                                         <input type="hidden" name="ideaId" value="@Model.Id" />
@@ -168,6 +168,7 @@
         </div>
     </div>
 </div>
+
 @section scripts {
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

@@ -73,3 +73,20 @@
 
     </div>
 </div>
+<br />
+<p>My ideas</p>
+<div class="row">
+    @(Html.Kendo()
+        .Grid(Model.Ideas)
+        .Name("grid")
+        .Columns(c => {
+            c.Bound(pr => pr.Title);
+            c.Bound(pr => pr.Content);
+            c.Bound(pr => pr.DateCreated);
+            c.Bound(pr => pr.Category.Name);
+        })
+        .Sortable()
+        .Pageable()
+        .Filterable()
+        .Groupable())
+</div>
