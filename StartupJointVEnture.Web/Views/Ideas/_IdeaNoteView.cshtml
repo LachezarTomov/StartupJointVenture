@@ -2,18 +2,19 @@
 @model PagedList.IPagedList<StartupJointVenture.Web.ViewModels.IdeaSampleViewModel>
 @using PagedList.Mvc;
 
-@foreach (var idea in Model)
-{
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="quote-container">
-            <span class="pin"></span>
-            <blockquote class="note yellow-note">
-                @Html.ActionLink(idea.Title, "../IdeaDetails/Index", new { ideaId = idea.Id })
-            </blockquote>
+<div class="row">
+    @foreach (var idea in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="quote-container">
+                <span class="pin"></span>
+                <blockquote class="note yellow-note">
+                    @Html.ActionLink(idea.Title, "../IdeaDetails/Index", new { ideaId = idea.Id })
+                </blockquote>
+            </div>
         </div>
-    </div>
-}
-
+    }
+</div>
 @if (Request.Path != "/" && Request.Path != "/Home/Index")
 {
     <div id="pager" class="row">
