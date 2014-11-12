@@ -14,8 +14,8 @@ namespace StartupJointVenture.Web
                 .Include("~/Scripts/Kendo/jquery.min.js"));
                 //.Include("~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/kendo").Include("~/Scripts/Kendo/kendo.all.min.js",
-                "~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/kendo")
+                .Include("~/Scripts/Kendo/kendo.all.min.js", "~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

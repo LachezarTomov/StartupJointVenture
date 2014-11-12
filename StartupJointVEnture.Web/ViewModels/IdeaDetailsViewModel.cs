@@ -20,6 +20,8 @@
 
         public DateTime DateCreated { get; set; }
 
+        public Category Category { get; set; }
+
         public IEnumerable<Comment> Comments { get; set; }
 
         public IEnumerable<Like> Likes { get; set; }

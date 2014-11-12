@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
-
-using AutoMapper.QueryableExtensions;
-using StartupJointVenture.Web.ViewModels;
-using System.IO;
-using StartupJointVenture.Data;
-
-namespace StartupJointVenture.Web.Controllers
+﻿namespace StartupJointVenture.Web.Controllers
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+
+    using AutoMapper.QueryableExtensions;
+    using StartupJointVenture.Web.ViewModels;
+
+    using StartupJointVenture.Data;
+    //using Kendo.Mvc.UI;
+    //using Kendo.Mvc.Extensions;
+
     public class ProfileController : BaseController
     {
         public ProfileController(IJointVentureData data)
@@ -37,6 +39,17 @@ namespace StartupJointVenture.Web.Controllers
 
             return View(userProfile);
         }
+
+        //public ActionResult Read([DataSourceRequest]DataSourceRequest request)
+        //{
+        //    var ideas = this.Data
+        //        .Ideas
+        //        .All()
+        //        .Where(i => i.AuthorId == User.Identity.GetUserId());
+        //    //    .ToDataSourceResult(request);
+
+        //    return this.Json(ideas);
+        //}
 
         public ActionResult Edit(ProfileViewModel model, HttpPostedFileBase imageUrl)
         {

@@ -25,7 +25,7 @@
             }
         </div>
         <div class="col-md-9">
-            @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data", id="profile-form" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -75,18 +75,46 @@
 </div>
 <br />
 <h3>My ideas</h3>
-<div class="row">
+@*<div class="row">
     @(Html.Kendo()
-        .Grid(Model.Ideas)
+        .Grid<StartupJointVenture.Web.ViewModels.IdeaDetailsViewModel>()
         .Name("grid")
-        .Columns(c => {
+        .Columns(c =>
+        {
             c.Bound(pr => pr.Title);
             c.Bound(pr => pr.Content);
             c.Bound(pr => pr.DateCreated);
             c.Bound(pr => pr.Category.Name);
         })
+        .Editable(edit =>
+        {
+            edit.Mode(GridEditMode.PopUp);
+        })
         .Sortable()
         .Pageable()
         .Filterable()
-        .Groupable())
+        .Groupable()
+        .DataSource(data => data
+            .Ajax()
+            .Model(m => m.Id(idea => idea.Id))
+            .Read(read => read.Action("Read", "Profile"))
+            ))
+</div>*@
+
+<div class="row">
+    @(Html.Kendo()
+        .Grid(Model.Ideas)
+        .Name("grid")
+        .Columns(c =>
+        {
+            c.Bound(pr => pr.Title);
+            c.Bound(pr => pr.Content);
+            c.Bound(pr => pr.DateCreated);
+            c.Bound(pr => pr.Category.Name).Title("Category");
+        })
+        .Sortable()
+        .Pageable()
+        .Filterable()
+        .Groupable()
+        )
 </div>
