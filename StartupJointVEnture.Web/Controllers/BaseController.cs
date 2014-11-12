@@ -12,21 +12,9 @@
     {
         protected IJointVentureData Data { get; set; }
 
-        public User LoggedUser { get; set; }
-
-        public BaseController()
-            : this(new JointVentureData())
-        {
-        }
-
         public BaseController(IJointVentureData data)
         {
             this.Data = data;
-        }
-
-        public ActionResult Index()
-        {
-            return View();
         }
     }
 }

@@ -8,9 +8,15 @@
 
     using AutoMapper.QueryableExtensions;
     using StartupJointVenture.Models;
+    using StartupJointVenture.Data;
 
     public class LikesController : BaseController
     {
+        public LikesController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         public ActionResult Index()
         {
             return View();

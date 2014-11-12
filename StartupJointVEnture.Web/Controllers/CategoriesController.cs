@@ -15,8 +15,13 @@ namespace StartupJointVenture.Web.Controllers
     public class CategoriesController : BaseController
     {
 
+        public CategoriesController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         [ChildActionOnly]
-    //    [OutputCache(Duration = 10 * 60)]
+        //    [OutputCache(Duration = 10 * 60)]
         public ActionResult GetAll()
         {
             var categories = this.Data.Categories.All().Project().To<CategoryViewModel>();
@@ -24,8 +29,8 @@ namespace StartupJointVenture.Web.Controllers
             return PartialView("_Categories", categories);
         }
 
-       [ChildActionOnly]
-  //     [OutputCache(Duration = 10 * 60)]
+        [ChildActionOnly]
+        //     [OutputCache(Duration = 10 * 60)]
         public ActionResult GetCategoriesDropdown()
         {
             var categories = Data.Categories.All().Project().To<CategoryViewModel>();

@@ -17,6 +17,11 @@
 
     public class IdeasController : BaseController
     {
+        public IdeasController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         [HttpGet]
         public ActionResult NewIdea()
         {

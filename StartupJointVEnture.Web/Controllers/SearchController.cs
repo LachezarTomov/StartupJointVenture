@@ -8,9 +8,15 @@
 
     using AutoMapper.QueryableExtensions;
     using StartupJointVenture.Web.ViewModels;
+    using StartupJointVenture.Data;
 
     public class SearchController : BaseController
     {
+        public SearchController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         [HttpGet]
         public ActionResult Index(int? categoryId)
         {

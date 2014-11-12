@@ -10,9 +10,15 @@
     using AutoMapper.QueryableExtensions;
     using StartupJointVenture.Web.ViewModels;
     using StartupJointVenture.Models;
+    using StartupJointVenture.Data;
     
     public class IdeaDetailsController : BaseController
     {
+        public IdeaDetailsController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         [HttpGet]
         public ActionResult Index(int ideaId)
         {

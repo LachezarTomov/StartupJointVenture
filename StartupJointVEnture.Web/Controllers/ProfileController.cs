@@ -9,11 +9,17 @@ using Microsoft.AspNet.Identity;
 using AutoMapper.QueryableExtensions;
 using StartupJointVenture.Web.ViewModels;
 using System.IO;
+using StartupJointVenture.Data;
 
 namespace StartupJointVenture.Web.Controllers
 {
     public class ProfileController : BaseController
     {
+        public ProfileController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         public ActionResult Index()
         {
             return View();

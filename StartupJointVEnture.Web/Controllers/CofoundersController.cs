@@ -11,9 +11,15 @@
     using AutoMapper.QueryableExtensions;
     using StartupJointVenture.Models;
     using StartupJointVenture.Web.ViewModels;
+    using StartupJointVenture.Data;
 
     public class CofoundersController : BaseController
     {
+        public CofoundersController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         public ActionResult Index()
         {
             return View();

@@ -11,9 +11,15 @@
     using AutoMapper.QueryableExtensions;
     using StartupJointVenture.Models;
     using StartupJointVenture.Web.ViewModels;
+    using StartupJointVenture.Data;
     
     public class CommentsController : BaseController
     {
+        public CommentsController(IJointVentureData data)
+            : base(data)
+        {
+        }
+
         public ActionResult Index()
         {
             return View();
