@@ -10,10 +10,9 @@
 
     using AutoMapper.QueryableExtensions;
     using StartupJointVenture.Web.ViewModels;
-
     using StartupJointVenture.Data;
-    //using Kendo.Mvc.UI;
-    //using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    using Kendo.Mvc.Extensions;
 
     public class ProfileController : BaseController
     {
@@ -40,16 +39,34 @@
             return View(userProfile);
         }
 
-        //public ActionResult Read([DataSourceRequest]DataSourceRequest request)
-        //{
-        //    var ideas = this.Data
-        //        .Ideas
-        //        .All()
-        //        .Where(i => i.AuthorId == User.Identity.GetUserId());
-        //    //    .ToDataSourceResult(request);
+        public ActionResult UpdateIdeaProfile([DataSourceRequest] DataSourceRequest request, IdeaProfileViewModel idea)
+        {
+            var existingCategory = this.Data.Ideas.All().FirstOrDefault(x => x.Id == idea.Id);
 
-        //    return this.Json(ideas);
-        //}
+            if (idea != null && ModelState.IsValid)
+            {
+                existingCategory.Title = idea.Title;
+                existingCategory.Content = idea.Content;                
+
+                this.Data.SaveChanges();
+            }
+
+            return Json((new[] { idea }.ToDataSourceResult(request, ModelState)), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ReadIdeas([DataSourceRequest]DataSourceRequest request)
+        {
+            var userId = User.Identity.GetUserId();
+            var ideas = this.Data
+                .Ideas
+                .All()
+                .Where(i => i.AuthorId == userId)
+                .Project()
+                .To<IdeaDetailsViewModel>()
+                ;
+
+            return this.Json(ideas.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Edit(ProfileViewModel model, HttpPostedFileBase imageUrl)
         {

@@ -75,33 +75,10 @@
 </div>
 <br />
 <h3>My ideas</h3>
-@*<div class="row">
-    @(Html.Kendo()
-        .Grid<StartupJointVenture.Web.ViewModels.IdeaDetailsViewModel>()
-        .Name("grid")
-        .Columns(c =>
-        {
-            c.Bound(pr => pr.Title);
-            c.Bound(pr => pr.Content);
-            c.Bound(pr => pr.DateCreated);
-            c.Bound(pr => pr.Category.Name);
-        })
-        .Editable(edit =>
-        {
-            edit.Mode(GridEditMode.PopUp);
-        })
-        .Sortable()
-        .Pageable()
-        .Filterable()
-        .Groupable()
-        .DataSource(data => data
-            .Ajax()
-            .Model(m => m.Id(idea => idea.Id))
-            .Read(read => read.Action("Read", "Profile"))
-            ))
-</div>*@
 
-<div class="row">
+@Html.Partial("_ShowIdeas")
+
+@*<div class="row">
     @(Html.Kendo()
         .Grid(Model.Ideas)
         .Name("grid")
@@ -117,4 +94,4 @@
         .Filterable()
         .Groupable()
         )
-</div>
+</div>*@

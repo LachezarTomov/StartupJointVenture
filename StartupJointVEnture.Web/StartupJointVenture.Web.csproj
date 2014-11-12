@@ -227,6 +227,7 @@
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\CreateIdeaViewModel.cs" />
     <Compile Include="ViewModels\IdeaDetailsViewModel.cs" />
+    <Compile Include="ViewModels\IdeaProfileViewModel.cs" />
     <Compile Include="ViewModels\IdeaSampleViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
   </ItemGroup>
@@ -1146,6 +1147,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Profile\_ShowIdeas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

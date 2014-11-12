@@ -13,6 +13,7 @@
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<JointVentureDbContext, Configuration>());
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public static JointVentureDbContext Create()
