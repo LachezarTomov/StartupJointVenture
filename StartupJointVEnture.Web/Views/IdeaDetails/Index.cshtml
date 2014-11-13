@@ -8,38 +8,32 @@
     </style>
 }
 
-@{
-    var showLikeItButton = true;
-    var likes = Model.Likes;
-    foreach (var like in likes)
-    {
-        if ((like.IdeaId == Model.Id && like.AuthorId == Model.Author.Id) || 
-            (like.IdeaId == Model.Id && like.Author.UserName == HttpContext.Current.User.Identity.Name))
-        {
-            showLikeItButton = false;
-            break;
-        }
-    }
-}
 <div class="row">
     <h2 class="col-sm-7 col-lg-7 col-md-7">Idea detail view</h2>
     <div class="col-sm-5 col-lg-5 col-md-5">
         <h1>
             <span class="label alert-info">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                <span id="likes">@Model.Likes.Count()</span>
+                <span id="likes">
+                    @Model.Likes.Count()
+                </span>
             </span>
-            @if(showLikeItButton)
+            @if (Model.Author.UserName != HttpContext.Current.User.Identity.Name)
             {
-            @Ajax.ActionLink("I Like It", "LikeIdea", "Likes",
+                if (ViewBag.hideLikeItButton == false)
+                {
+                    @Ajax.ActionLink("I Like It", "LikeIdea", "Likes",
                 new { ideaId = Model.Id, likesCount = @Model.Likes.Count() },
-                new AjaxOptions() { 
-                    UpdateTargetId = "likes", 
-                    InsertionMode = InsertionMode.Replace, 
-                    OnSuccess="HideLikeItButton"}, 
-                new { @class = "btn btn-info btn-md", id="likeItButton" })
+                new AjaxOptions()
+                {
+                    UpdateTargetId = "likes",
+                    InsertionMode = InsertionMode.Replace,
+                    OnSuccess = "HideLikeItButton"
+                },
+                new { @class = "btn btn-info btn-md", id = "likeItButton" })
+                }
             }
-                </h1>
+        </h1>
     </div>
 </div>
 
@@ -173,8 +167,7 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script>
-        function HideLikeItButton()
-        {
+        function HideLikeItButton() {
             $("#likeItButton").hide();
         }
     </script>
