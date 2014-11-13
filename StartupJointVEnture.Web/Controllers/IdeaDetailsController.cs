@@ -31,7 +31,6 @@
             string userId = User.Identity.GetUserId();
             
             ViewBag.hideLikeItButton = false;
-
             var result = this.Data.Likes.All()
                 .Where(l => l.IdeaId == ideaId)
                 .Where(l => l.AuthorId == userId)
@@ -41,6 +40,18 @@
             {
                 ViewBag.hideLikeItButton = true;
             }
+
+            ViewBag.Joined = false;
+            var joined = this.Data.Cofounders.All()
+                .Where(l => l.IdeaId == ideaId)
+                .Where(c => c.UserId == userId)
+                .FirstOrDefault();
+
+            if (joined != null)
+            {
+                ViewBag.Joined = true;
+            }
+
 
             var idea = this.Data.Ideas.All().Where(i => i.Id == ideaId).Project().To<IdeaDetailsViewModel>();
    

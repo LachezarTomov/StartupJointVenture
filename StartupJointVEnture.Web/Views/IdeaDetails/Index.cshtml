@@ -81,17 +81,19 @@
                     @if (Context.User.Identity.IsAuthenticated)
                     {
                         <div class="row">
-                            @using (Ajax.BeginForm("AddComment", "Comments", null, new AjaxOptions
-                    {
-                        UpdateTargetId = "allComments",
-                        InsertionMode = InsertionMode.Replace,
-                        HttpMethod = "POST"
-                    }, new { id = "addCommentForm", @class = "form-horizontal" }))
+                            @using (Ajax.BeginForm("AddComment", "Comments", null,
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "allComments",
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "POST",
+                                    OnSuccess = "$('#comment').val('');"
+                                }, new { id = "addCommentForm", @class = "form-horizontal" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <div>
                                     <div class="row">
-                                        <input type="text" name="comment" class="form-control" />
+                                        <input type="text" id="comment" name="comment" class="form-control" />
                                         <input type="hidden" name="ideaId" value="@Model.Id" />
                                     </div>
                                     <br />
@@ -124,35 +126,38 @@
                             }
                         </div>
                     </div>
-                    @if (Context.User.Identity.IsAuthenticated && Model.Author.UserName != Context.User.Identity.Name)
+                    @if (!ViewBag.Joined)
                     {
-                        <div class="row">
-                            @using (Ajax.BeginForm("AddCofounder", "Cofounders", null, new AjaxOptions
+                        if (Context.User.Identity.IsAuthenticated && Model.Author.UserName != Context.User.Identity.Name)
+                        {
+                            <div class="row" id="cofounders-form">
+                                @using (Ajax.BeginForm("AddCofounder", "Cofounders", null, new AjaxOptions
                     {
                         UpdateTargetId = "allCofounders",
                         InsertionMode = InsertionMode.Replace,
+                        OnSuccess = "$('#cofounders-form').hide();",
                         HttpMethod = "POST"
-                    }, new { id = "addCommentForm", @class = "form-horizontal" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <div>
-                                    <div class="row">
-                                        <label for="location">My location</label>
-                                        <input type="text" name="location" id="location" class="form-control" />
+                    }, new { id = "addCofounderForm", @class = "form-horizontal" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div>
+                                        <div class="row">
+                                            <label for="location">My location</label>
+                                            <input type="text" name="location" id="location" class="form-control" />
 
-                                        <label for="profskills">My role</label>
-                                        <input type="text" name="profskills" id="profskills" class="form-control" />
+                                            <label for="profskills">My role</label>
+                                            <input type="text" name="profskills" id="profskills" class="form-control" />
+                                            <input type="hidden" name="ideaId" value="@Model.Id" />
+                                        </div>
+                                        <br />
 
-                                        <input type="hidden" name="ideaId" value="@Model.Id" />
-
+                                        <div class="row">
+                                            <input type="submit" value="Join" class="btn-primary btn-lg" />
+                                        </div>
                                     </div>
-                                    <br />
-                                    <div class="row">
-                                        <input type="submit" value="Join" class="btn-primary btn-lg" />
-                                    </div>
-                                </div>
-                            }
-                        </div>
+                                }
+                            </div>
+                        }
                     }
                 </div>
             </div>
