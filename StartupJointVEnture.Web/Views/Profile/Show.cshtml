@@ -76,7 +76,8 @@
 <br />
 <h3>My ideas</h3>
 
-@Html.Partial("_ShowIdeas")
+@*@Html.Partial("_ShowIdeas")*@
+@Html.Action("ShowIdeas", "Profile");
 
 @*<div class="row">
     @(Html.Kendo()

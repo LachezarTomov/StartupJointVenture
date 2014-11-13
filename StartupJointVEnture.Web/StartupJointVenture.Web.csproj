@@ -1147,7 +1147,8 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
-    <Content Include="Views\Profile\_ShowIdeas.cshtml" />
+    <Content Include="Views\Profile\ShowIdeas.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CategoryEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

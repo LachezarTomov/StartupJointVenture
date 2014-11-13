@@ -39,6 +39,15 @@
             return View(userProfile);
         }
 
+        public ActionResult ShowIdeas()
+        {
+            ViewData["categories"] = this.Data.Categories.All().Project().To<CategoryViewModel>().ToList();
+
+            //ViewData["categories"] = this.Data.Categories.All().ToList();
+
+            return View();
+        }
+
         public ActionResult UpdateIdeaProfile([DataSourceRequest] DataSourceRequest request, IdeaProfileViewModel idea)
         {
             var existingCategory = this.Data.Ideas.All().FirstOrDefault(x => x.Id == idea.Id);
@@ -46,7 +55,8 @@
             if (idea != null && ModelState.IsValid)
             {
                 existingCategory.Title = idea.Title;
-                existingCategory.Content = idea.Content;                
+                existingCategory.Content = idea.Content;
+                existingCategory.CategoryId = idea.Category.Id;
 
                 this.Data.SaveChanges();
             }
