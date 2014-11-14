@@ -257,6 +257,7 @@
     <Content Include="Content\images\c3.jpg" />
     <Content Include="Content\images\cofounders.png" />
     <Content Include="Content\images\comments.png" />
+    <Content Include="Content\images\no-person-image.jpg" />
     <Content Include="Content\images\nopicture.png" />
     <Content Include="Content\Kendo\Black\editor.png" />
     <Content Include="Content\Kendo\Black\imagebrowser.png" />
@@ -473,7 +474,9 @@
     <Content Include="Content\Kendo\Uniform\slider-v.gif" />
     <Content Include="Content\Kendo\Uniform\sprite.png" />
     <Content Include="Content\Kendo\Uniform\sprite_2x.png" />
+    <Content Include="Content\large-img-profile.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\small-img-profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1174,6 +1177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Avatars\" />
     <Folder Include="Libraries\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Likes\" />

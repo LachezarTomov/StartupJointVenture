@@ -14,7 +14,6 @@
     using StartupJointVenture.Web.ViewModels;
     using StartupJointVenture.Models;
 
-
     public class IdeasController : BaseController
     {
         public IdeasController(IJointVentureData data)
@@ -46,7 +45,6 @@
                 this.Data.Ideas.Add(newIdea);
                 this.Data.SaveChanges();
 
-                //return RedirectToAction("NewIdea");
                 return RedirectToAction("../");
             }
 
@@ -56,9 +54,11 @@
         [HttpGet]
         public ActionResult GetIdeasHomePage()
         {
-            var ideas = this.Data.Ideas.All().OrderByDescending(i => i.Id).Take(3).Project().To<IdeaSampleViewModel>();
-           
-            PagedList<IdeaSampleViewModel> newModel = new PagedList<IdeaSampleViewModel>(ideas,1,3);
+            const int startPageNotesCount = 6;
+
+            var ideas = this.Data.Ideas.All().OrderByDescending(i => i.Id).Take(startPageNotesCount).Project().To<IdeaSampleViewModel>();
+
+            PagedList<IdeaSampleViewModel> newModel = new PagedList<IdeaSampleViewModel>(ideas, 1, startPageNotesCount);
 
             return PartialView("_IdeaNoteView", newModel);
         }

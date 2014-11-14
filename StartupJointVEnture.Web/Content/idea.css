@@ -13,7 +13,7 @@
 .note {
   color: #333;
   position: relative;
-  width: 100%;
+  width: 90%;
   height: 220px;
   margin: 0 auto;
   padding: 20px;
@@ -86,4 +86,11 @@
   -webkit-transform-origin: 50% 100%;
   -ms-transform-origin: 50% 100%;
   -o-transform-origin: 50% 100%;
+}
+
+.corc-background {
+    background-image: url('images/corc.jpg');
+    background-repeat: repeat-y; /* for vertical repeat */
+    background-repeat: repeat-x; /* for horizontal repeat */
+    height: 350px;
 }

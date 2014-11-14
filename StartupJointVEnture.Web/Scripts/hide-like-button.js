@@ -1,0 +1,3 @@
+function HideLikeItButton() {
+            $("#likeItButton").hide();
+        }
