@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ideas administration</h2>
+
+<div class="row">
+    @(Html.Kendo()
+        .Grid<StartupJointVenture.Web.Areas.Administration.ViewModels.IdeaViewModel>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(pr => pr.Title).Width(100);
+            columns.ForeignKey(pr => pr.Category.Id, (System.Collections.IEnumerable)ViewData["categories"], "Id", "Name").Title("Category").Width(120);
+            columns.Bound(pr => pr.Content);
+
+            columns.Command(command =>
+            {
+                command.Edit();
+                command.Destroy();
+            }).Width(120);
+        })
+        .Editable(edit =>
+        {
+            edit.Mode(GridEditMode.InLine);
+        })
+        .Sortable()
+        .Pageable()
+        .Filterable()
+        .Groupable()
+        .DataSource(data =>
+        {
+            data.Ajax()
+                .Model(m => m.Id(idea => idea.Id))
+                .ServerOperation(true)
+                .Read(read => read.Action("ReadIdeas", "Idea"))
+                .Destroy("DeleteIdea", "Idea")
+                .Update("UpdateIdeaProfile", "Idea");
+        })
+    )
+</div>

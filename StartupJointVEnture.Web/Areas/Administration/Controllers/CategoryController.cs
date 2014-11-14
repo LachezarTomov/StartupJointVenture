@@ -13,8 +13,8 @@
     using StartupJointVenture.Models;
     using StartupJointVenture.Web.Controllers;
     using StartupJointVenture.Web.Areas.Administration.ViewModels;
-    
-    public class CategoryController : BaseController
+
+    public class CategoryController : AdminController
     {
         public CategoryController(IJointVentureData data)
             : base(data)
@@ -66,7 +66,7 @@
             if (category != null && ModelState.IsValid)
             {
                 currentCategory.Name = category.Name;
-                
+
                 this.Data.SaveChanges();
             }
 
@@ -76,7 +76,37 @@
         [HttpPost]
         public JsonResult DeleteCategory([DataSourceRequest] DataSourceRequest request, CategoryViewModel category)
         {
+
             var currentCategory = this.Data.Categories.All().FirstOrDefault(x => x.Id == category.Id);
+
+            var ideas = this.Data.Ideas.All().Where(i => i.CategoryId == currentCategory.Id).ToList();
+            foreach (var idea in ideas)
+            {
+                // Delete all comment from this idea
+                var comments = this.Data.Comments.All().Where(c => c.IdeaId == idea.Id).ToList();
+
+                foreach (var comment in comments)
+                {
+                    this.Data.Comments.Delete(comment);
+                }
+
+                // Delete all cofounders from this idea
+                var cofounders = this.Data.Cofounders.All().Where(c => c.IdeaId == idea.Id).ToList();
+                foreach (var cofounder in cofounders)
+                {
+                    this.Data.Cofounders.Delete(cofounder);
+                }
+
+                // Delete all likes from this idea
+                var likes = this.Data.Likes.All().Where(c => c.IdeaId == idea.Id).ToList();
+                foreach (var like in likes)
+                {
+                    this.Data.Likes.Delete(like);
+                }
+
+                var currentIdea = this.Data.Ideas.All().FirstOrDefault(x => x.Id == idea.Id);
+                this.Data.Ideas.Delete(currentIdea);
+            }
 
             this.Data.Categories.Delete(currentCategory);
             this.Data.SaveChanges();
