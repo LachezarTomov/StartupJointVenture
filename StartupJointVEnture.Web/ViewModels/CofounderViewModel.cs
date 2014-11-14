@@ -8,7 +8,7 @@
 
     public class CofounderViewModel : IMapFrom<Cofounder>
     {
-        public User User { get; set; }
+        public User Author { get; set; }
 
         public string Location { get; set; }
 

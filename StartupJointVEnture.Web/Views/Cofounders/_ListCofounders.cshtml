@@ -3,17 +3,17 @@
 @foreach (var item in Model)
 {
     <div class="row panel">
-        @if (item.User.ImageUrl == null)
+        @if (item.Author.ImageUrl == null)
         {
             <img src="~/Content/images/nopicture.png" />
         }
         else
         {
-            <img src="@item.User.ImageUrl" />
+            <img src="@item.Author.ImageUrl" />
         }
         <strong>
-            @item.User.FirstName
-            @item.User.LastName
+            @item.Author.FirstName
+            @item.Author.LastName
         </strong>
         (@item.Location)
         <div>

@@ -18,19 +18,22 @@
                     @Model.Likes.Count()
                 </span>
             </span>
-            @if (Model.Author.UserName != HttpContext.Current.User.Identity.Name)
+            @if (Context.User.Identity.IsAuthenticated)
             {
-                if (ViewBag.hideLikeItButton == false)
+                if (Model.Author.UserName != HttpContext.Current.User.Identity.Name)
                 {
-                    @Ajax.ActionLink("I Like It", "LikeIdea", "Likes",
-                new { ideaId = Model.Id, likesCount = @Model.Likes.Count() },
-                new AjaxOptions()
+                    if (ViewBag.hideLikeItButton == false)
+                    {
+                        @Ajax.ActionLink("I Like It", "LikeIdea", "Likes",
+                            new { ideaId = Model.Id, likesCount = @Model.Likes.Count() },
+                            new AjaxOptions()
                 {
                     UpdateTargetId = "likes",
                     InsertionMode = InsertionMode.Replace,
                     OnSuccess = "HideLikeItButton"
                 },
                 new { @class = "btn btn-info btn-md", id = "likeItButton" })
+                    }
                 }
             }
         </h1>
@@ -174,10 +177,10 @@
     @Scripts.Render("~/Scripts/hide-like-button.js")
 
     @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <script>
-        function HideLikeItButton() {
-            $("#likeItButton").hide();
-        }
-    </script>*@
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script>
+            function HideLikeItButton() {
+                $("#likeItButton").hide();
+            }
+        </script>*@
 }
