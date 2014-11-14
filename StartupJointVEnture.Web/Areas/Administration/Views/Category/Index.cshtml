@@ -3,17 +3,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Users administration</h2>
+<h2>Category administration</h2>
 @(Html.Kendo()
-    .Grid<StartupJointVenture.Web.Areas.Administration.ViewModels.UserViewModel>()
+    .Grid<StartupJointVenture.Web.Areas.Administration.ViewModels.CategoryViewModel>()
     .Name("grid")
     .Columns(columns =>
     {
-        columns.Bound(model => model.UserName);
-        columns.Bound(model => model.FirstName);
-        columns.Bound(model => model.LastName);
-        columns.Bound(model => model.Description);
-        columns.Bound(model => model.ImageUrl);
+        columns.Bound(model => model.Id).Hidden();
+        columns.Bound(model => model.Name);
         columns.Command(command =>
             {
                 command.Edit();
@@ -50,8 +47,8 @@
             .Model(m => m.Id(b => b.Id))
             .PageSize(10)
             .ServerOperation(true)
-            .Create("CreateUser", "Users")
-            .Read("ReadUsers", "Users")
-            .Update("UpdateUser", "Users")
-            .Destroy("DeleteUser", "Users");
+            .Create("CreateCategory", "Category", new { area = "Administration" })
+            .Read("ReadCategories", "Category")
+            .Update("UpdateCategory", "Category")
+            .Destroy("DeleteCategory", "Category");
     }))

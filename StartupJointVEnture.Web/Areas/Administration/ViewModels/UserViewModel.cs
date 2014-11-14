@@ -23,6 +23,8 @@
         [Display(Name = "Last name")]
         public string LastName { get; set; }
 
+        public string Description { get; set; }
+
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; }
     }

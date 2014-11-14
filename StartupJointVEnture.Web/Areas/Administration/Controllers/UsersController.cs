@@ -51,6 +51,7 @@ namespace StartupJointVenture.Web.Areas.Administration.Controllers
                     UserName = user.UserName,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
+                    Description = user.Description,
                     ImageUrl = user.ImageUrl
                 };
 
@@ -73,6 +74,7 @@ namespace StartupJointVenture.Web.Areas.Administration.Controllers
                 existingUser.UserName = user.UserName;
                 existingUser.FirstName = user.FirstName;
                 existingUser.LastName = user.LastName;
+                existingUser.Description = user.Description;
                 existingUser.ImageUrl = user.ImageUrl;
 
                 this.Data.SaveChanges();
