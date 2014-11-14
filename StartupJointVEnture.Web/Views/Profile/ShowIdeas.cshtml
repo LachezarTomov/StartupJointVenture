@@ -1,0 +1,29 @@
+﻿<div class="row">
+    @(Html.Kendo()
+        .Grid<StartupJointVenture.Web.ViewModels.IdeaProfileViewModel>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(pr => pr.Title);
+            columns.ForeignKey(pr => pr.Category.Id, (System.Collections.IEnumerable)ViewData["categories"], "Id", "Name").Title("Category").Width(200);
+            columns.Bound(pr => pr.Content);
+            
+            columns.Command(command => command.Edit()).Width(220);
+        })
+        .Editable(edit =>
+        {
+            edit.Mode(GridEditMode.InLine);
+        })
+        .Sortable()
+        .Pageable()
+        .Filterable()
+        .Groupable()
+        .DataSource(data => {
+            data.Ajax()
+                .Model(m => m.Id(idea => idea.Id))
+                .ServerOperation(true)
+                .Read(read => read.Action("ReadIdeas", "Profile"))
+                .Update("UpdateIdeaProfile", "Profile");
+        })
+    )
+</div>
