@@ -28,8 +28,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (Context.User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("New idea", "NewIdea", "Ideas")</li>
-                        <li>@Html.ActionLink("Profile", "Show", "Profile")</li>
+                        <li>@Html.ActionLink("New idea", "NewIdea", "Ideas", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Profile", "Show", "Profile", new { area = "" }, null)</li>
 
                         if (User.IsInRole("Admin"))
                         {

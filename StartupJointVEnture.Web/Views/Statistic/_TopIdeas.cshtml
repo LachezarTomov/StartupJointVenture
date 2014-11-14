@@ -1,0 +1,25 @@
+﻿@model IList<StartupJointVenture.Web.ViewModels.IdeaSampleViewModel>
+
+@{int count = 0;}
+<div class="row panel">
+    <div class="row text-center lead">
+        <strong>Most liked 5 ideas</strong>
+    </div>
+    <div class="panel-body">
+        @foreach (var idea in Model)
+        {
+            count++;
+            <div class="row">
+                <div class="col-md-2">
+                    <span class="pull-right">@count.</span>
+                </div>
+                <div class="col-md-10">
+                    @Html.ActionLink(idea.Title, "../IdeaDetails/Index", new { ideaId = idea.Id })
+                </div>
+            </div>
+            <div class="row">
+                <hr />
+            </div>
+        }
+    </div>
+</div>
