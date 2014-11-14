@@ -81,7 +81,7 @@
                     @if (Context.User.Identity.IsAuthenticated)
                     {
                         <div class="row">
-                            @using (Ajax.BeginForm("AddComment", "Comments", null,
+                            @using (Ajax.BeginForm("AddComment", "Comments", new { area = "" },
                                 new AjaxOptions
                                 {
                                     UpdateTargetId = "allComments",
@@ -131,7 +131,7 @@
                         if (Context.User.Identity.IsAuthenticated && Model.Author.UserName != Context.User.Identity.Name)
                         {
                             <div class="row" id="cofounders-form">
-                                @using (Ajax.BeginForm("AddCofounder", "Cofounders", null, new AjaxOptions
+                                @using (Ajax.BeginForm("AddCofounder", "Cofounders", new { area = "" }, new AjaxOptions
                     {
                         UpdateTargetId = "allCofounders",
                         InsertionMode = InsertionMode.Replace,

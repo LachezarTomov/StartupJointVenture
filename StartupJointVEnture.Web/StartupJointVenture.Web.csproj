@@ -201,9 +201,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CofounderController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CommentController.cs" />
     <Compile Include="Areas\Administration\Controllers\IdeaController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Administration\ViewModels\CategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\CofounderViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\CommentViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\IdeaViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
@@ -487,6 +491,8 @@
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Category\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Idea\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Comment\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Cofounder\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

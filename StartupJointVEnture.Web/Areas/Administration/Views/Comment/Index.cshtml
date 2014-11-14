@@ -1,0 +1,43 @@
+﻿
+<h2>Comments administration</h2>
+
+@(Html.Kendo()
+    .Grid<StartupJointVenture.Web.Areas.Administration.ViewModels.CommentViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(model => model.Author.UserName);
+        columns.Bound(model => model.Content);
+        columns.Bound(model => model.DateCreated);
+        columns.Bound(model => model.Idea.Title);
+        
+        columns.Command(command =>
+            {
+                command.Destroy();
+            });
+    })
+    .Pageable(page =>
+        {
+            page.PreviousNext(true);
+            page.Numeric(true);
+            page.Refresh(true);
+        })
+    .Sortable(sort =>
+        {
+            sort.AllowUnsort(false);
+            sort.SortMode(GridSortMode.SingleColumn);
+        })
+    .Groupable()
+    .Filterable()
+    .Resizable(resize => resize.Columns(true))
+    .Navigatable()
+    .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
+    .DataSource(data =>
+    {
+        data.Ajax()
+            .Model(m => m.Id(b => b.Id))
+            .PageSize(10)
+            .ServerOperation(true)
+            .Read("ReadComments", "Comment")
+            .Destroy("DeleteComment", "Comment");
+    }))
