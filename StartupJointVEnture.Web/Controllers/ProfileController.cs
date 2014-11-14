@@ -44,8 +44,6 @@
         {
             ViewData["categories"] = this.Data.Categories.All().Project().To<CategoryViewModel>().ToList();
 
-            //ViewData["categories"] = this.Data.Categories.All().ToList();
-
             return View();
         }
 
@@ -73,40 +71,43 @@
                 .All()
                 .Where(i => i.AuthorId == userId)
                 .Project()
-                .To<IdeaDetailsViewModel>()
-                ;
+                .To<IdeaDetailsViewModel>();
 
             return this.Json(ideas.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(ProfileViewModel model, HttpPostedFileBase imageUrl)
         {
-            string userId = User.Identity.GetUserId();
-            string basePath = "/Content/images/" + userId;
-            string serverPath = Server.MapPath("~" + basePath);
-
-            if (imageUrl != null)
+            if (ModelState.IsValid)
             {
-                if (!Directory.Exists(serverPath))
+                string userId = User.Identity.GetUserId();
+                string basePath = "/Avatars/" + userId;
+                string serverPath = Server.MapPath("~" + basePath);
+
+                if (imageUrl != null)
                 {
-                    Directory.CreateDirectory(serverPath);
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    string filePath = Path.Combine(serverPath, Path.GetFileName(imageUrl.FileName));
+                    imageUrl.SaveAs(filePath);
                 }
 
-                string filePath = Path.Combine(serverPath, Path.GetFileName(imageUrl.FileName));
-                imageUrl.SaveAs(filePath);
+                var user = this.Data.Users.Find(userId);
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Description = model.Description;
+                if (imageUrl != null)
+                {
+                    user.ImageUrl = basePath + "/" + Path.GetFileName(imageUrl.FileName);
+                }
+
+                this.Data.SaveChanges();
             }
-
-            var user = this.Data.Users.Find(userId);
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.Description = model.Description;
-            if (imageUrl != null)
-            {
-                user.ImageUrl = basePath + "/" + Path.GetFileName(imageUrl.FileName);
-            }
-
-            this.Data.SaveChanges();
-
 
             return RedirectToAction("Show");
         }

@@ -6,8 +6,8 @@
         {
             columns.Bound(pr => pr.Title);
             columns.ForeignKey(pr => pr.Category.Id, (System.Collections.IEnumerable)ViewData["categories"], "Id", "Name").Title("Category").Width(200);
-            columns.Bound(pr => pr.Content);
-            
+            columns.Bound(pr => pr.Content).ClientTemplate("#= getHtmlNewLinesString(Content) #");
+
             columns.Command(command => command.Edit()).Width(220);
         })
         .Editable(edit =>
@@ -18,7 +18,8 @@
         .Pageable()
         .Filterable()
         .Groupable()
-        .DataSource(data => {
+        .DataSource(data =>
+        {
             data.Ajax()
                 .Model(m => m.Id(idea => idea.Id))
                 .ServerOperation(true)
@@ -27,3 +28,9 @@
         })
     )
 </div>
+<script>
+    function getHtmlNewLinesString(text) {
+        var regexp = new RegExp('\n', 'g');
+        return text.replace(regexp, '<br>');
+    }
+</script>

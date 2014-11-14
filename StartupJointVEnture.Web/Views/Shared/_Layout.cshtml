@@ -26,6 +26,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Browse", "Index", "Search", new { area = "" }, null)</li>
+
                     @if (Context.User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("New idea", "NewIdea", "Ideas", new { area = "" }, null)</li>

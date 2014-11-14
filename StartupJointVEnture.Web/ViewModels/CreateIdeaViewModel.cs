@@ -18,7 +18,6 @@
         public string Content { get; set; }
 
         [Display(Name = "Category")]
-        
         public string Category { get; set; }
 
     }

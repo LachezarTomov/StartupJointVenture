@@ -76,23 +76,4 @@
 <br />
 <h3>My ideas</h3>
 
-@*@Html.Partial("_ShowIdeas")*@
-@Html.Action("ShowIdeas", "Profile");
-
-@*<div class="row">
-    @(Html.Kendo()
-        .Grid(Model.Ideas)
-        .Name("grid")
-        .Columns(c =>
-        {
-            c.Bound(pr => pr.Title);
-            c.Bound(pr => pr.Content);
-            c.Bound(pr => pr.DateCreated);
-            c.Bound(pr => pr.Category.Name).Title("Category");
-        })
-        .Sortable()
-        .Pageable()
-        .Filterable()
-        .Groupable()
-        )
-</div>*@
+@Html.Action("ShowIdeas", "Profile")
