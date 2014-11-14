@@ -20,6 +20,7 @@ namespace StartupJointVenture.Web.Controllers
         {
         }
 
+        [OutputCache(Duration = 10 * 60)]
         public ActionResult MostLikedIdeas()
         {
             var ideas = this.Data.Ideas.All().OrderByDescending(i => i.Likes.Count()).Take(5).Project().To<IdeaSampleViewModel>().ToList();

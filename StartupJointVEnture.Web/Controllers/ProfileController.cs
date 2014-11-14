@@ -14,6 +14,7 @@
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
 
+    [Authorize]
     public class ProfileController : BaseController
     {
         public ProfileController(IJointVentureData data)

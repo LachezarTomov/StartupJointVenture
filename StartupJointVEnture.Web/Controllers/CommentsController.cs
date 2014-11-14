@@ -13,6 +13,7 @@
     using StartupJointVenture.Web.ViewModels;
     using StartupJointVenture.Data;
     
+    [Authorize]
     public class CommentsController : BaseController
     {
         public CommentsController(IJointVentureData data)

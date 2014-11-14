@@ -10,6 +10,7 @@
     using StartupJointVenture.Models;
     using StartupJointVenture.Data;
 
+    [Authorize]
     public class LikesController : BaseController
     {
         public LikesController(IJointVentureData data)

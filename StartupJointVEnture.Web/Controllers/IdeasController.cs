@@ -28,6 +28,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult NewIdea(CreateIdeaViewModel model)
         {
