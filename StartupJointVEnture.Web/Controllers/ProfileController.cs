@@ -49,13 +49,13 @@
 
         public ActionResult UpdateIdeaProfile([DataSourceRequest] DataSourceRequest request, IdeaProfileViewModel idea)
         {
-            var existingCategory = this.Data.Ideas.All().FirstOrDefault(x => x.Id == idea.Id);
+            var existingIdea = this.Data.Ideas.All().FirstOrDefault(x => x.Id == idea.Id);
 
             if (idea != null && ModelState.IsValid)
             {
-                existingCategory.Title = idea.Title;
-                existingCategory.Content = idea.Content;
-                existingCategory.CategoryId = idea.Category.Id;
+                existingIdea.Title = idea.Title;
+                existingIdea.Content = idea.Content;
+                existingIdea.CategoryId = idea.Category.Id;
 
                 this.Data.SaveChanges();
             }

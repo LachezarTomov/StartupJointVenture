@@ -22,6 +22,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult NewIdea()
         {
             return View();
