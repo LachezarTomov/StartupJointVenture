@@ -23,7 +23,7 @@
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@
                 category.Id = newCategory.Id;
             }
 
-            return Json(new[] { category }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { category }.ToDataSourceResult(request, ModelState));
         }
 
         [HttpPost]

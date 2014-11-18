@@ -14,7 +14,6 @@ namespace StartupJointVenture.Web.Controllers
 
     public class CategoriesController : BaseController
     {
-
         public CategoriesController(IJointVentureData data)
             : base(data)
         {
@@ -26,7 +25,7 @@ namespace StartupJointVenture.Web.Controllers
         {
             var categories = this.Data.Categories.All().Project().To<CategoryViewModel>();
 
-            return PartialView("_Categories", categories);
+            return this.PartialView("_Categories", categories);
         }
 
         [ChildActionOnly]
